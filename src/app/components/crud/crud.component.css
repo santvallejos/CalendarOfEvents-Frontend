@@ -1,0 +1,69 @@
+.containerCRUD{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 4rem;
+    gap: 5rem;
+}
+
+.containerCRUD button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 12px;
+    gap: 8px;
+    height: 40px;
+    width: 201px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.eventAdd{
+    background: #32af19;
+}
+
+.eventAdd:hover{
+    background: #32af19;
+}
+
+.eventEdit{
+    background: #92b8db;
+}
+
+.eventEdit:hover{
+    background: #92b8db;
+}
+
+.eventDelete{
+    background: #FF342B;
+}
+
+.eventDelete:hover{
+    background: #FF342B;
+}
+
+.containerCRUD button:hover .svg-icon {
+    animation: slope 1s linear infinite;
+}
+
+.lable {
+    line-height: 22px;
+    font-size: 17px;
+    color: #fff;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+}
+
+@keyframes slope {
+    0% {
+    }
+  
+    50% {
+      transform: rotate(10deg);
+    }
+  
+    100% {
+    }
+  }
+

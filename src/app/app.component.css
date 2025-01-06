@@ -1,7 +1,7 @@
 .containerAppCalendar {
     padding: 1rem;
     display: grid;
-    grid-template-columns: 0.5fr 1.5fr; /* Dos columnas: izquierda más estrecha, derecha más ancha */
+    grid-template-columns: 0.3fr 1.5fr; /* Dos columnas: izquierda más estrecha, derecha más ancha */
     grid-template-rows: 0.8fr 0.7fr;   /* Dos filas */
     gap: 1rem;                           /* Sin espacio entre elementos */
 }
