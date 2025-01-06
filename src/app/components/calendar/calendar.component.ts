@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventsService } from '../../services/events.service'; //API
+import { Event } from '../../models/event.model';
+
 //Imports del Full calendar
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
@@ -21,7 +23,7 @@ import esLocale from '@fullcalendar/core/locales/es';
 })
 export class CalendarComponent implements OnInit {
   calendarOptions!: CalendarOptions;
-  events: any[] = [];
+  events: Event[] = [];
   isLoading: boolean = true; // Indicador de carga
 
   constructor(private eventService: EventsService) {}
@@ -60,7 +62,7 @@ export class CalendarComponent implements OnInit {
           events: this.events.map((e) => ({
             title: e.title,
             start: e.eventDate,
-            end: e.finishEventDate,
+            end: e.finishEventDate
           })),
           selectable: true,
           selectMirror: true,
@@ -71,6 +73,7 @@ export class CalendarComponent implements OnInit {
 
         // Desactiva el indicador de carga
         this.isLoading = false;
+        console.log(this.events);
       },
       (error) => {
         console.error('Error loading events:', error);

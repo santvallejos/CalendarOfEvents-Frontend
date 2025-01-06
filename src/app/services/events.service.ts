@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Event } from '../models/event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class EventsService {
   constructor(private http: HttpClient) { }
 
   //Traer todos los eventos 
-  getEvents(): Observable<any[]>{
-    return this.http.get<any[]>(this.apiUrl);
+  getEvents(): Observable<Event[]>{
+    return this.http.get<Event[]>(this.apiUrl);
   }
 }
