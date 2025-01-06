@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EventsService } from '../../services/events.service'; //API
+//Imports del Full calendar
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { CalendarOptions } from '@fullcalendar/core'; // useful for typechecking
+import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
-import { EventsService } from '../../services/events.service';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import esLocale from '@fullcalendar/core/locales/es';
 
 @Component({
   selector: 'app-calendar',
@@ -12,66 +19,71 @@ import { EventsService } from '../../services/events.service';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
-export class CalendarComponent implements OnInit{
+export class CalendarComponent implements OnInit {
   calendarOptions!: CalendarOptions;
-
-  events: any[] = []
+  events: any[] = [];
+  isLoading: boolean = true; // Indicador de carga
 
   constructor(private eventService: EventsService) {}
 
   ngOnInit(): void {
     this.loadEvents();
-    this.calendarOptions = {
-      initialView: 'dayGridMonth',
-      plugins: [dayGridPlugin, interactionPlugin],
-      weekends: false, // initial value
-      events: this.events.map((e) => ({
-        id: e.id,
-        title: e.title,
-        start: e.eventDate,
-        end: e.finishEventDate,
-      })),
-      editable: true,
-      selectable: true,
-      dateClick: this.onDateClick.bind(this),
-      eventClick: this.onEventClick.bind(this),
-    };
   }
 
   loadEvents(): void {
     this.eventService.getEvents().subscribe((data) => {
-      this.events = data;
-      this.calendarOptions = {
-        initialView: 'dayGridMonth',
-        plugins: [dayGridPlugin, interactionPlugin],
-        weekends: false, // initial value
-        events: data.map((e) => ({
-          id: e.id,
-          title: e.title,
-          start: e.eventDate,
-          end: e.finishEventDate,
-        })),
-        editable: true,
-        selectable: true,
-        dateClick: this.onDateClick.bind(this),
-        eventClick: this.onEventClick.bind(this),
-      };
-    });
-  }
+        this.events = data;
 
-  handleDateClick(arg: DateClickArg) {
-    alert('date click! ' + arg.dateStr)
+        // Configura las opciones del calendario con los eventos cargados
+        this.calendarOptions = {
+          locale: esLocale,
+          initialView: 'dayGridMonth',
+          themeSystem: 'bootstrap5',
+          height: 800,
+          contentHeight: 600,
+          plugins: [
+            dayGridPlugin,
+            interactionPlugin,
+            bootstrap5Plugin,
+            timeGridPlugin,
+            listPlugin
+          ],
+          headerToolbar: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'dayGridMonth,list'
+          },
+          titleFormat: { 
+            year: 'numeric', 
+            month: 'long' 
+          },
+          events: this.events.map((e) => ({
+            title: e.title,
+            start: e.eventDate,
+            end: e.finishEventDate,
+          })),
+          selectable: true,
+          selectMirror: true,
+          dayMaxEvents: true,
+          dateClick: this.onDateClick.bind(this),
+          eventClick: this.onEventClick.bind(this),
+        };
+
+        // Desactiva el indicador de carga
+        this.isLoading = false;
+      },
+      (error) => {
+        console.error('Error loading events:', error);
+        this.isLoading = false; // Incluso en caso de error, desactiva el indicador
+      }
+    );
   }
 
   onDateClick(info: any): void {
-    alert('Clicked on date: ' + info.dateStr);
+    alert('Fecha: ' + info.dateStr);
   }
 
   onEventClick(info: any): void {
-    alert('Event: ' + info.event.title);
-  }
-
-  toggleWeekends() {
-    this.calendarOptions.weekends = !this.calendarOptions.weekends
+    alert(info.event.title);
   }
 }

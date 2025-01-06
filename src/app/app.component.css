@@ -1,0 +1,35 @@
+.containerAppCalendar {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr; /* Dos columnas: izquierda más estrecha, derecha más ancha */
+    grid-template-rows: 0.8fr 0.7fr;   /* Dos filas */
+    gap: 1rem;                           /* Sin espacio entre elementos */
+}
+
+.containerAppCalendar div{
+    background: white;
+    border-radius: 10px;
+    transition: border-radiu;
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+             0 0  0 2px rgba(190, 190, 190, 0),
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+.left-top {
+    grid-column: 1; /* Primera columna */
+    grid-row: 1;    /* Primera fila */
+}
+
+.left-bottom {
+    grid-column: 1; /* Primera columna */
+    grid-row: 2;    /* Segunda fila */
+}
+
+.right {
+    grid-column: 2;       /* Segunda columna */
+    grid-row: 1 / span 2; /* Ocupa ambas filas */
+}
+
+.extra {
+    display: none; /* Si no necesitas este div, lo puedes ocultar */
+}

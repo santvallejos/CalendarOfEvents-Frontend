@@ -1,5 +1,11 @@
-<button (click)="toggleWeekends()">toggle weekends</button>
-<full-calendar
-    [options]="calendarOptions"
-    class="containerCalendar">
-</full-calendar>
+<div class="containerCalendar">
+  <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <full-calendar [options]="calendarOptions" class="calendar"></full-calendar>
+  </div>
+</div>
