@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CrudComponent } from './components/crud/crud.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CalendarComponent, CrudComponent],
+  imports: [RouterOutlet, CalendarComponent, CrudComponent, NotificationsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

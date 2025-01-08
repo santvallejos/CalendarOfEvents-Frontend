@@ -1,0 +1,23 @@
+.containerNotifications{
+    background-color: white;
+    height: 27rem;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.containerNotifications h1{
+    padding: 1rem;
+    background-color: #e2dfdf;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+ul{
+    padding: 1rem;
+}
+
+li{
+    border-bottom: solid 1px #e2dfdf;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
