@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventsService } from '../../services/events.service'; //API
+import { SharedEventsService } from '../../services/shared-events.service';
 import { Event } from '../../models/event.model';
 
 //Imports del Full calendar
@@ -26,55 +26,51 @@ export class CalendarComponent implements OnInit {
   events: Event[] = [];
   isLoading: boolean = true; // Indicador de carga
 
-  constructor(private eventService: EventsService) {}
+  constructor(private sharedEventsServices: SharedEventsService) { }
 
   ngOnInit(): void {
-    this.loadEvents();
-  }
+    this.sharedEventsServices.loadEvents();
+    this.sharedEventsServices.event$.subscribe((data) => {
+      this.events = data
 
-  loadEvents(): void {
-    this.eventService.getEvents().subscribe((data) => {
-        this.events = data;
+      // Configura las opciones del calendario con los eventos cargados
+      this.calendarOptions = {
+        locale: esLocale,
+        initialView: 'dayGridMonth',
+        themeSystem: 'bootstrap5',
+        height: 800,
+        contentHeight: 600,
+        plugins: [
+          dayGridPlugin,
+          interactionPlugin,
+          bootstrap5Plugin,
+          timeGridPlugin,
+          listPlugin
+        ],
+        headerToolbar: {
+          left: 'prev,next',
+          center: 'title',
+          right: 'dayGridMonth,list'
+        },
+        titleFormat: {
+          year: 'numeric',
+          month: 'long'
+        },
+        events: this.events.map((e) => ({
+          title: e.title,
+          start: e.eventDate,
+          end: e.finishEventDate
+        })),
+        selectable: true,
+        selectMirror: true,
+        dayMaxEvents: true,
+        dateClick: this.onDateClick.bind(this),
+        eventClick: this.onEventClick.bind(this),
+      };
 
-        // Configura las opciones del calendario con los eventos cargados
-        this.calendarOptions = {
-          locale: esLocale,
-          initialView: 'dayGridMonth',
-          themeSystem: 'bootstrap5',
-          height: 800,
-          contentHeight: 600,
-          plugins: [
-            dayGridPlugin,
-            interactionPlugin,
-            bootstrap5Plugin,
-            timeGridPlugin,
-            listPlugin
-          ],
-          headerToolbar: {
-            left: 'prev,next',
-            center: 'title',
-            right: 'dayGridMonth,list'
-          },
-          titleFormat: { 
-            year: 'numeric', 
-            month: 'long' 
-          },
-          events: this.events.map((e) => ({
-            title: e.title,
-            start: e.eventDate,
-            end: e.finishEventDate
-          })),
-          selectable: true,
-          selectMirror: true,
-          dayMaxEvents: true,
-          dateClick: this.onDateClick.bind(this),
-          eventClick: this.onEventClick.bind(this),
-        };
-
-        // Desactiva el indicador de carga
-        this.isLoading = false;
-        console.log(this.events);
-      },
+      // Desactiva el indicador de carga
+      this.isLoading = false;
+    },
       (error) => {
         console.error('Error loading events:', error);
         this.isLoading = false; // Incluso en caso de error, desactiva el indicador
