@@ -1,37 +1,44 @@
-.containerCRUD{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 4rem;
-    gap: 5rem;
+
+p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 
-.containerCRUD button{
+button{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 9px 12px;
-    gap: 8px;
-    height: 40px;
-    width: 201px;
+    padding: 8px;
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    height: 2rem;
+}
+
+button:hover .svg-icon {
+    animation: slope 1s linear infinite;
+}
+
+.headerCRUD{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(187, 187, 187, 0.507);
+}
+
+.headerCRUD h1{
+    font-size: 1.7rem;
 }
 
 .eventAdd{
-    background: #32af19;
-}
-
-.eventAdd:hover{
-    background: #32af19;
+    background: #216413cc;
 }
 
 .eventEdit{
-    background: #92b8db;
-}
-
-.eventEdit:hover{
     background: #92b8db;
 }
 
@@ -39,17 +46,10 @@
     background: #FF342B;
 }
 
-.eventDelete:hover{
-    background: #FF342B;
-}
-
-.containerCRUD button:hover .svg-icon {
-    animation: slope 1s linear infinite;
-}
 
 .lable {
     line-height: 22px;
-    font-size: 17px;
+    font-size: 14px;
     color: #fff;
     font-family: sans-serif;
     letter-spacing: 1px;
@@ -58,12 +58,35 @@
 @keyframes slope {
     0% {
     }
-  
+    
     50% {
-      transform: rotate(10deg);
+        transform: rotate(10deg);
     }
-  
+
     100% {
     }
-  }
+}
+
+.listEvents{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.listEvents div{
+    display: flex;
+    gap: 3px;
+}
+
+.scrollable-list {
+    max-height: 345px; /* Altura máxima */
+    overflow-y: auto; /* Permitir desplazamiento vertical */
+    padding: 5px; /* Espaciado interno */
+    background-color: #f8f9fa; /* Fondo opcional */
+    scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
+}
+
+.scrollable-list::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento en Chrome, Edge y Safari */
+}
 

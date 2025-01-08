@@ -1,98 +1,109 @@
-<div class="containerCRUD">
-  <!-- Button Add -->
-  <button class="btn btn-primary eventAdd" data-bs-toggle="modal" data-bs-target="#eventAdd">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none" class="svg-icon">
-      <g stroke-width="2" stroke-linecap="round" stroke="#fff">
-        <rect y="5" x="4" width="16" rx="2" height="16"></rect>
-        <path d="m8 3v4"></path>
-        <path d="m16 3v4"></path>
-        <path d="m4 11h16"></path>
-      </g>
-    </svg>
-    <span class="lable">Add Event</span>
-  </button>
+<section class="containerCRUD">
 
-  <!-- Button Edit -->
-  <button class="btn btn-primary eventEdit" data-bs-toggle="modal" data-bs-target="#eventEdit">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-      class="icon icon-tabler icons-tabler-outline icon-tabler-pencil" class="svg-icon">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-      <path d="M13.5 6.5l4 4" />
-    </svg>
-    <span class="lable">Edit Event</span>
-  </button>
+  <!-- Header y Agrear un evento -->
+  <div class="headerCRUD">
+    <h1>Eventos</h1>
+    <button (click)="clearForm()" class="eventAdd" data-bs-toggle="modal" data-bs-target="#addEvent">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-plus svg-icon">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 5l0 14" />
+        <path d="M5 12l14 0" />
+      </svg>
+      <span class="lable">Agregar</span>
+    </button>
+  </div>
 
-  <!-- Button Delete -->
-  <button class="btn btn-primary eventDelete" data-bs-toggle="modal" data-bs-target="#eventDelete">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-      class="icon icon-tabler icons-tabler-outline icon-tabler-trash" class="svg-icon">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M4 7l16 0" />
-      <path d="M10 11l0 6" />
-      <path d="M14 11l0 6" />
-      <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-      <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-    </svg>
-    <span class="lable">Add to Calendar</span>
-  </button>
-</div>
+  <!-- Lista de Eventos -->
+  <div class="scrollable-list">
+    <ul class="list-group list-group-flush" *ngFor="let event of events">
+      <li class="list-group-item listEvents">
+        <p>{{ event.title }}</p>
+        <div>
+          <!-- Button Edit -->
+          <button class="eventEdit" (click)="selectedEvent(event.id)" data-bs-toggle="modal" data-bs-target="#editEvent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-pencil" class="svg-icon">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+              <path d="M13.5 6.5l4 4" />
+            </svg>
+          </button>
+          <!-- Button Delete -->
+          <button (click)="onSubmitDeleteEvent(event.id)" class="eventDelete">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-trash" class="svg-icon">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 7l16 0" />
+              <path d="M10 11l0 6" />
+              <path d="M14 11l0 6" />
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            </svg>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-<!-- Modal Add -->
-<div class="modal fade" id="eventAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+</section>
+
+<!-- Modal Add Event -->
+<div class="modal fade" id="addEvent" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Event</h1>
+        <h1 class="modal-title fs-5">Agregar Evento</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        add
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+      <form [formGroup]="EventForm" (ngSubmit)="onSubmitAddEvent()" class="modal-body">
+
+        <div class="form-floating mb-3">
+          <input formControlName="title" class="form-control" id="title">
+          <label for="title">Titulo</label>
+        </div>
+        <div class="form-floating">
+          <input formControlName="eventDate" type="datetime-local" class="form-control" id="eventDate">
+          <label for="eventDate">Fecha de inicio</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input formControlName="finishEventDate" type="datetime-local" class="form-control" id="finishEventDate">
+          <label for="finishEventDate">Fecha de finalización</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+      </form>
     </div>
   </div>
 </div>
 
-<!-- Modal Edit -->
-<div class="modal fade" id="eventEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- Modal Edit Event -->
+<div class="modal fade" id="editEvent" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <h1 class="modal-title fs-5">Editar Evento</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        edit
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
+      <form [formGroup]="EventForm" (ngSubmit)="onSubmitEditEvent(selectedEventId)" class="modal-body">
 
-<!-- Modal Delete -->
-<div class="modal fade" id="eventDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        delete
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+        <div class="form-floating mb-3">
+          <input formControlName="title" class="form-control" id="title">
+          <label for="title">Titulo</label>
+        </div>
+        <div class="form-floating">
+          <input formControlName="eventDate" type="datetime-local" class="form-control" id="eventDate">
+          <label for="eventDate">Fecha de inicio</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input formControlName="finishEventDate" type="datetime-local" class="form-control" id="finishEventDate">
+          <label for="finishEventDate">Fecha de finalización</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+
+      </form>
     </div>
   </div>
 </div>
