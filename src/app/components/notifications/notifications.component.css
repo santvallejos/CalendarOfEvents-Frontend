@@ -5,19 +5,62 @@
     border-radius: 1rem;
 }
 
-.containerNotifications h1{
-    padding: 1rem;
-    background-color: #e2dfdf;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
+.scrollable-list {
+    max-height: 350px; /* Altura máxima */
+    overflow-y: auto; /* Permitir desplazamiento vertical */
+    scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
+    padding: 0.5rem;
 }
 
-ul{
-    padding: 1rem;
+.title{
+    padding: 0.7rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid rgba(187, 187, 187, 0.507);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 
-li{
+.notification{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
     border-bottom: solid 1px #e2dfdf;
-    padding: 1rem;
-    font-size: 1.2rem;
+}
+
+.infoNotification{
+    display: flex;
+    flex-direction: column;
+}
+
+.infoNotification h2{
+    font-size: 1rem;
+}
+
+.infoNotification p{
+    font-size: 0.9rem;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 2rem;
+}
+button:hover .svg-icon {
+    animation: slope 1s linear infinite;
+}
+.eventDelete{
+    background: #FF342B;
+}
+
+.buttonNotification{
+    display: flex;
+    gap: 4px;
 }

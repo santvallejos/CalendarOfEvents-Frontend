@@ -4,10 +4,11 @@ import { Event } from '../../models/event.model';
 import { ReactiveFormsModule, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EventsService } from '../../services/events.service';
 import { SharedEventsService } from '../../services/shared-events.service';
+import { FormatDatePipe } from '../../pipes/format-date.pipe';
 
 @Component({
   selector: 'app-crud',
-  imports: [CommonModule ,ReactiveFormsModule, NgFor],
+  imports: [CommonModule ,ReactiveFormsModule, NgFor, FormatDatePipe],
   templateUrl: './crud.component.html',
   styleUrl: './crud.component.css'
 })

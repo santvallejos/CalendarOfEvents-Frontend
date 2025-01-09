@@ -1,5 +1,4 @@
-
-p{
+h2{
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -73,17 +72,30 @@ button:hover .svg-icon {
     justify-content: space-between;
 }
 
-.listEvents div{
+.infoEventList{
     display: flex;
-    gap: 3px;
+    flex-direction: column;
+}
+
+.infoEventList h2{
+    font-size: 1.1rem;
+}
+
+.infoEventList p{
+    font-size: 0.9rem;
+}
+
+.buttonList{
+    display: flex;
+    gap: 4px;
 }
 
 .scrollable-list {
-    max-height: 345px; /* Altura máxima */
+    max-height: 300px; /* Altura máxima */
     overflow-y: auto; /* Permitir desplazamiento vertical */
     padding: 5px; /* Espaciado interno */
-    background-color: #f8f9fa; /* Fondo opcional */
     scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
+    padding: 1rem;
 }
 
 .scrollable-list::-webkit-scrollbar {

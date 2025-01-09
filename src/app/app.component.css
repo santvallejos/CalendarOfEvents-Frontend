@@ -1,18 +1,18 @@
 .containerAppCalendar {
     padding: 1rem;
     display: grid;
-    grid-template-columns: 0.3fr 1.5fr; /* Dos columnas: izquierda más estrecha, derecha más ancha */
-    grid-template-rows: 0.8fr 0.7fr;   /* Dos filas */
-    gap: 1rem;                           /* Sin espacio entre elementos */
+    grid-template-columns: 0.4fr 1.5fr; /* Dos columnas: izquierda más estrecha, derecha más ancha */
+    grid-template-rows: 0.8fr 1fr;   /* Dos filas */
+    gap: 1rem;                       /* Espacio entre elementos */
 }
 
-.containerAppCalendar div{
+.containerAppCalendar div {
     background: white;
     border-radius: 10px;
-    transition: border-radiu;
-    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
-             0 0  0 2px rgba(190, 190, 190, 0),
-             0.3em 0.3em 1em rgba(0,0,0,0.3);
+    transition: border-radius 0.3s;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+                0 0 0 2px rgba(190, 190, 190, 0),
+                0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
 .left-top {
@@ -32,4 +32,77 @@
 
 .extra {
     display: none; /* Si no necesitas este div, lo puedes ocultar */
+}
+
+/* Media query para dispositivos pequeños */
+@media (max-width: 768px) {
+    .containerAppCalendar {
+        grid-template-columns: 1fr; /* Una sola columna */
+        grid-template-rows: auto;  /* Altura automática */
+    }
+
+    .right {
+        grid-column: 1; /* Primera columna */
+        grid-row: 1;    /* Primera fila */
+    }
+
+    .left-top {
+        grid-column: 1; /* Primera columna */
+        grid-row: 2;    /* Segunda fila */
+    }
+
+    .left-bottom {
+        grid-column: 1; /* Primera columna */
+        grid-row: 3;    /* Tercera fila */
+    }
+}
+
+
+.alert-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1050; /* Por encima del contenido */
+    max-width: 300px;
+    animation: fadeOut 5s forwards;
+}
+
+.alert {
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 10px; /* Espaciado interno */
+    gap: 10px; /* Espacio entre el icono y el texto */
+    background-color: #d4edda; /* Fondo verde suave */
+    color: #155724; /* Texto verde oscuro */
+    border: 1px solid #c3e6cb; /* Borde acorde al color */
+}
+
+.alert svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0; /* Evita que el icono se reduzca */
+}
+
+.alert p {
+    margin: 0; /* Quita los márgenes por defecto */
+    line-height: 1.5; /* Asegura un espaciado vertical consistente */
+    display: flex;
+    align-items: center; /* Alinea verticalmente el texto */
+}
+    
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
 }

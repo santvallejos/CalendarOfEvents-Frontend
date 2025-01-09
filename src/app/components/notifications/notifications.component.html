@@ -1,10 +1,39 @@
 <section class="containerNotifications">
-    <h1>Notificación de eventos</h1>
-    <ul *ngFor="let notifications of eventsNotifications">
-        <li>
-            <h2>
-                {{notifications}}
-            </h2>
+    <h2 class="title">Notificaciones de eventos</h2>
+    <ul class="listNotifications scrollable-list">
+        <li class="notification" *ngFor="let event of eventsNotifications; let i = index">
+            <div class="infoNotification">
+                <h2>
+                    {{ event.title }}
+                </h2>
+                <p>{{ event.eventDate }}</p>
+            </div>
+
+            <div class="buttonNotification">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                    stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-bell-ringing">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                    <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                    <path d="M21 6.727a11.05 11.05 0 0 0 -2.794 -3.727" />
+                    <path d="M3 6.727a11.05 11.05 0 0 1 2.792 -3.727" />
+                </svg>
+                <!-- Button Delete -->
+                <button (click)="deleteNotification(i)" class="eventDelete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash" class="svg-icon">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M4 7l16 0" />
+                        <path d="M10 11l0 6" />
+                        <path d="M14 11l0 6" />
+                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                    </svg>
+                </button>
+            </div>
+
         </li>
     </ul>
 </section>

@@ -3,7 +3,7 @@ import { environment } from '../environment/environment';
 import * as signalR from '@microsoft/signalr';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SignalrService {
   hubConnection: signalR.HubConnection;
@@ -14,19 +14,31 @@ export class SignalrService {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(this.hubUrl, {
         skipNegotiation: true,
-        transport: signalR.HttpTransportType.WebSockets
+        transport: signalR.HttpTransportType.WebSockets,
       })
       .withAutomaticReconnect()
       .build();
 
-      //Iniciar Conexion
-      this.hubConnection.start()
-        .then(() => console.log('Connection started'))
-        .catch(err => console.error('Error starting connection: ', err));
+    //Iniciar Conexion
+    this.hubConnection
+      .start()
+      .then(() => console.log('Connection started'))
+      .catch((err) => console.error('Error starting connection: ', err));
   }
 
-  //Recibir notificaciones
-  onReceiveNotification(callback: (message: string) => void): void{
-    this.hubConnection.on('ReceiveNotification', callback);
+  //Si el backend me manda mas de un variable, hay que asignarle a cada una de ellas una en el front
+  onReceiveNotification(
+    callback: (
+      title: string,
+      eventDate: string,
+      finishEventDate: string
+    ) => void
+  ): void {
+    this.hubConnection.on(
+      'ReceiveNotification',
+      (title: string, eventDate: string, finishEventDate: string) => {
+        callback(title, eventDate, finishEventDate);
+      }
+    );
   }
 }

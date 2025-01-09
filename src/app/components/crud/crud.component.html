@@ -2,7 +2,7 @@
 
   <!-- Header y Agrear un evento -->
   <div class="headerCRUD">
-    <h1>Eventos</h1>
+    <h2>Eventos</h2>
     <button (click)="clearForm()" class="eventAdd" data-bs-toggle="modal" data-bs-target="#addEvent">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -16,11 +16,15 @@
   </div>
 
   <!-- Lista de Eventos -->
-  <div class="scrollable-list">
+  <section class="scrollable-list">
     <ul class="list-group list-group-flush" *ngFor="let event of events">
-      <li class="list-group-item listEvents">
-        <p>{{ event.title }}</p>
-        <div>
+      <li class="listEvents">
+        <div class="infoEventList">
+          <h2>{{ event.title }}</h2>
+          <p>{{ event.eventDate | formatDate }}</p>
+        </div>
+
+        <div class="buttonList">
           <!-- Button Edit -->
           <button class="eventEdit" (click)="selectedEvent(event.id)" data-bs-toggle="modal" data-bs-target="#editEvent">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -47,7 +51,7 @@
         </div>
       </li>
     </ul>
-  </div>
+  </section>
 
 </section>
 
@@ -65,7 +69,7 @@
           <input formControlName="title" class="form-control" id="title">
           <label for="title">Titulo</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
           <input formControlName="eventDate" type="datetime-local" class="form-control" id="eventDate">
           <label for="eventDate">Fecha de inicio</label>
         </div>
