@@ -1,59 +1,83 @@
-# CalendarOfEventsFrontend
+# Calendar Of Events ✏️🗓️
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+Calendar of Events, allows us to manage events or reminders within a calendar, it has the function of showing, creating, updating and deleting events in a simple way that in turn, through SignalR, notifies us when an event has started.
 
-## Development server
+## Table of Contents
+- [Project architecture](#architecture)
+- [Installation](#installation)
+- [Use](#use)
+- [Characteristics](#characteristics)
+- [Author](#author)
 
-To start a local development server, run:
+## architecture
+
+    CalendarOfEvents-Backend/
+    ├── .angular
+    ├── node_modules
+    ├── public
+    ├── src
+    │   ├── app
+    │   │   ├── components
+    │   │   │   ├── calendar
+    │   │   │   ├── crud
+    │   │   │   └── notifications
+    │   │   ├── environment
+    │   │   │   └── environment
+    │   │   ├── models
+    │   │   │   ├── event
+    │   │   │   └── notification
+    │   │   ├── pipes
+    │   │   │   └── format-date
+    │   │   ├── services
+    │   │   │   ├── event
+    │   │   │   ├── shared-events
+    │   │   │   └── signalr
+    │   │   ├── app.component.css
+    │   │   ├── app.component.html
+    │   │   ├── app.component.ts
+    │   │   ├── config
+    │   │   └── routes
+    │   ├── index.html
+    │   ├── main.ts
+    │   ├── styles.css
+    ├── angular.json
+    ├── package-lock.json
+    └── package.json
+
+## installation
+
+1.Clone this repository and move to the main folder:
 
 ```bash
-ng serve
+git clone https://github.com/santvallejos/CalendarOfEvents-Frontend.git
+cd CalendarOfEvents-Frontend
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2.Install packages
 
 ```bash
-ng generate component component-name
+npm install
+npm install @fullcalendar/timegrid @fullcalendar/list @fullcalendar/bootstrap5 @formkittempo @microsoft/signalr
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3.Running the project
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+## use
 
-To build the project run:
+The project has the ability to display events within a calendar, manage the views and obtain information about each one, you can also manage the events with a CRUD that allows you to view, add, update or delete.
+Finally, it has the functionality to send and store notifications of when an event has started.
 
-```bash
-ng build
-```
+## characteristics
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Events view
+- Events CRUD
+- Event notification
 
-## Running unit tests
+## author
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[![LinkedIn Follow](https://img.icons8.com/?size=50&id=447&format=png&color=000000)](https://www.linkedin.com/in/santiago-vallejos-97a933236/)
+[![Github](https://img.icons8.com/?size=50&id=62856&format=png&color=000000)](https://github.com/santvallejos)
