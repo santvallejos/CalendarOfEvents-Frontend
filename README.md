@@ -11,7 +11,7 @@ Calendar of Events, allows us to manage events or reminders within a calendar, i
 
 ## architecture
 
-    CalendarOfEvents-Backend/
+    CalendarOfEvents-Frontend/
     ├── .angular
     ├── node_modules
     ├── public

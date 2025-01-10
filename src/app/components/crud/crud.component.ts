@@ -54,7 +54,7 @@ export class CrudComponent implements OnInit{
       });
     }
     else{
-      console.log("Verifique los campos requeridos!");
+      alert("Verifique los campos requeridos!");
     }
   }
 
