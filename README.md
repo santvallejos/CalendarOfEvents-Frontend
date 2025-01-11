@@ -59,8 +59,11 @@ cd CalendarOfEvents-Frontend
 npm install
 npm install @fullcalendar/timegrid @fullcalendar/list @fullcalendar/bootstrap5 @formkittempo @microsoft/signalr
 ```
+3.Specify the port in the environment, for example:
 
-3.Running the project
+    baseUrl: 'http://localhost:5174'
+
+4.Running the project
 
 ```bash
 npm start
